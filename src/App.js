@@ -9,6 +9,11 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 
+import Beers from './beer/components/Beers.js'
+import CreateBeer from './beer/components/CreateBeer.js'
+import Beer from './beer/components/Beer.js'
+import UpdateBeer from './beer/components/UpdateBeer.js'
+
 import Alert from 'react-bootstrap/Alert'
 
 class App extends Component {
@@ -54,6 +59,19 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+
+          <AuthenticatedRoute user={user} exact path='/beers' render={() => (
+            <Beers alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/beers/:id' render={() => (
+            <Beer alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/beers-create' render={() => (
+            <CreateBeer alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/beers/:id/update' render={() => (
+            <UpdateBeer alert={this.alert} user={user} />
           )} />
         </main>
       </React.Fragment>
