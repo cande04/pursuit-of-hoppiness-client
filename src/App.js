@@ -13,6 +13,7 @@ import Beers from './beer/components/Beers.js'
 import CreateBeer from './beer/components/CreateBeer.js'
 import Beer from './beer/components/Beer.js'
 import UpdateBeer from './beer/components/UpdateBeer.js'
+import SearchBeer from './beer/components/SearchBeer.js'
 
 import Alert from 'react-bootstrap/Alert'
 
@@ -72,6 +73,10 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/beers/:id/update' render={() => (
             <UpdateBeer alert={this.alert} user={user} />
+          )} />
+
+          <AuthenticatedRoute user={user} exact path='/search-beer' render={() => (
+            <SearchBeer alert={this.alert} user={user} />
           )} />
         </main>
       </React.Fragment>

@@ -9,6 +9,7 @@ const authenticatedOptions = (
     <Link to="/sign-out">Sign Out</Link>
     <Link to="/beers">See Your Beers</Link>
     <Link to="/beers-create">Add a Beer</Link>
+    <Link to="/search-beer">Find a Beer</Link>
   </React.Fragment>
 )
 
