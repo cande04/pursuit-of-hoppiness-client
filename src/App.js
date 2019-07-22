@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.scss'
 import { Route } from 'react-router-dom'
+import { SnackbarProvider } from 'notistack'
 
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
@@ -14,16 +15,14 @@ import CreateBeer from './beer/components/CreateBeer.js'
 import Beer from './beer/components/Beer.js'
 import UpdateBeer from './beer/components/UpdateBeer.js'
 import SearchBeer from './beer/components/SearchBeer.js'
-
-import Alert from 'react-bootstrap/Alert'
+import CreateKnownBeer from './beer/components/CreateKnownBeer'
 
 class App extends Component {
   constructor () {
     super()
 
     this.state = {
-      user: null,
-      alerts: []
+      user: null
     }
   }
 
@@ -31,23 +30,13 @@ class App extends Component {
 
   clearUser = () => this.setState({ user: null })
 
-  alert = (message, type) => {
-    this.setState({ alerts: [...this.state.alerts, { message, type }] })
-  }
-
   render () {
-    const { alerts, user } = this.state
+    const { user } = this.state
 
     return (
-      <React.Fragment>
+      <SnackbarProvider maxSnack={3}>
         <Header user={user} />
-        {alerts.map((alert, index) => (
-          <Alert key={index} dismissible variant={alert.type}>
-            <Alert.Heading>
-              {alert.message}
-            </Alert.Heading>
-          </Alert>
-        ))}
+
         <main className="container">
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
@@ -78,8 +67,12 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/search-beer' render={() => (
             <SearchBeer alert={this.alert} user={user} />
           )} />
+
+          <AuthenticatedRoute user={user} exact path='/beers-known-create' render={() => (
+            <CreateKnownBeer alert={this.alert} user={user} />
+          )} />
         </main>
-      </React.Fragment>
+      </SnackbarProvider>
     )
   }
 }

@@ -24,13 +24,36 @@ class CreateBeer extends Component {
     }
   }
 
+  // componentDidMount () {
+  //   axios({
+  //     url: `${apiUrl}/get-beer`,
+  //     method: 'POST',
+  //     headers: {
+  //       'Authorization': `Token token=${this.props.user.token}`
+  //     },
+  //     data: {
+  //       beer_id: this.props.state.beer.id
+  //     }
+  //   })
+  //     .then(res => console.log(res))
+  // }
+
+  // handleChange = event => {
+  //   const updatedField =
+  //   { [event.target.name]: event.target.value }
+  //
+  //   const newBeer = Object.assign(this.state.beer, updatedField)
+  //
+  //   this.setState({ beer: newBeer })
+  // }
+
   handleChange = event => {
-    const updatedField =
-    { [event.target.name]: event.target.value }
-
-    const newBeer = Object.assign(this.state.beer, updatedField)
-
-    this.setState({ beer: newBeer })
+    this.setState({
+      beer: {
+        ...this.state.beer,
+        [event.target.name]: event.target.value
+      }
+    })
   }
 
   handleSubmit = event => {

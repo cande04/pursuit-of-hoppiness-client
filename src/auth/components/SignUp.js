@@ -1,8 +1,22 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { withSnackbar } from 'notistack'
 
 import { signUp, signIn } from '../api'
 import messages from '../messages'
+
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
+const styles = {
+  paper: {
+    maxWidth: '600px',
+    padding: '2rem',
+    margin: '2rem auto'
+  }
+}
 
 class SignUp extends Component {
   constructor () {
@@ -22,17 +36,17 @@ class SignUp extends Component {
   onSignUp = event => {
     event.preventDefault()
 
-    const { alert, history, setUser } = this.props
+    const { enqueueSnackbar, history, setUser } = this.props
 
     signUp(this.state)
       .then(() => signIn(this.state))
       .then(res => setUser(res.data.user))
-      .then(() => alert(messages.signUpSuccess, 'success'))
+      .then(() => enqueueSnackbar(messages.signUpSuccess, { variant: 'success' }))
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({ email: '', password: '', passwordConfirmation: '' })
-        alert(messages.signUpFailure, 'danger')
+        enqueueSnackbar(messages.signUpFailure, { variant: 'danger' })
       })
   }
 
@@ -40,40 +54,52 @@ class SignUp extends Component {
     const { email, password, passwordConfirmation } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.onSignUp}>
-        <h3>Sign Up</h3>
-
-        <label htmlFor="email">Email</label>
-        <input
-          required
-          name="email"
-          value={email}
-          type="email"
-          placeholder="Email"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          required
-          name="password"
-          value={password}
-          type="password"
-          placeholder="Password"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="passwordConfirmation">Confirm Password</label>
-        <input
-          required
-          name="passwordConfirmation"
-          value={passwordConfirmation}
-          type="password"
-          placeholder="Confirm Password"
-          onChange={this.handleChange}
-        />
-        <button type="submit">Sign Up</button>
-      </form>
+      <div >
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Paper style={styles.paper}>
+              <form onSubmit={this.onSignUp}>
+                <h3>Sign Up</h3>
+                <TextField
+                  required
+                  type="email"
+                  name="email"
+                  value={email}
+                  placeholder="Email"
+                  onChange={this.handleChange}
+                  variant="outlined"
+                  style={{ width: '100%', marginBottom: '1rem' }}
+                />
+                <TextField InputLabelProps= {{ shrink: true }}
+                  required
+                  type="password"
+                  name="password"
+                  value={password}
+                  placeholder="password"
+                  onChange={this.handleChange}
+                  variant="outlined"
+                  style={{ width: '100%', marginBottom: '1rem' }}
+                />
+                <TextField InputLabelProps= {{ shrink: true }}
+                  required
+                  type="password"
+                  name="passwordConfirmation"
+                  value={passwordConfirmation}
+                  placeholder="password"
+                  onChange={this.handleChange}
+                  variant="outlined"
+                  style={{ width: '100%', marginBottom: '1rem' }}
+                />
+                <Button variant="contained" color="primary" type="submit">
+                  sign up
+                </Button>
+              </form>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
     )
   }
 }
 
-export default withRouter(SignUp)
+export default withSnackbar(withRouter(SignUp))

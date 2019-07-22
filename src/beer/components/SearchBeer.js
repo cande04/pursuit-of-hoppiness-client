@@ -1,78 +1,137 @@
-import React, { Component } from 'react'
+import React, { useState, Link } from 'react'
+import { withRouter } from 'react-router-dom'
+// import Button from 'react-bootstrap/Button'
 
 import BeerSearchForm from '../shared/BeerSearchForm.js'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
 
-class SearchBeer extends Component {
-  constructor (props) {
-    super(props)
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
-    this.state = {
-      searchBeer: '',
-      beerResults: []
-    }
+const SearchBeer = props => {
+  const [searchBeer, setSearchBeer] = useState('')
+  const [beerResults, setBeerResults] = useState([])
+  const [noBeer, setNoBeer] = useState(null)
+
+  const handleChange = event => {
+    event.persist()
+    setSearchBeer(beer => ({ [event.target.name]: event.target.value }))
   }
 
-  handleChange = event => {
-    const updatedField =
-    { [event.target.name]: event.target.value }
-
-    const newSearch = Object.assign(this.state, updatedField)
-
-    this.setState({ searchBeer: newSearch })
-  }
-
-  handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault()
 
     axios({
       url: `${apiUrl}/search-beer`,
       method: 'POST',
       headers: {
-        'Authorization': `Token token=${this.props.user.token}`
+        'Authorization': `Token token=${props.user.token}`
       },
-      data: { searchBeer: this.state.searchBeer }
+      data: { searchBeer }
     })
       .then(res => {
         console.log(res.data.data)
-        this.setState({ beerResults: res.data.data })
+        if (res.data.totalResults !== 0) {
+          setBeerResults(res.data.data)
+          setNoBeer(false)
+        } else {
+          setNoBeer(true)
+        }
       })
-      .then(() => this.props.alert('you created a new beer!', 'success'))
       .catch(console.error)
   }
 
-  render () {
-    const { searchBeer, beerResults } = this.state
-
-    const beerResultsList = beerResults.map((beer, index) => {
-      return (
-        <li key={index}>
-          {beer.name}
-          {beer.description}
-        </li>
-      )
-    })
-
-    if (beerResults.length !== 0) {
-      return (
-        <div>
-          <ul>
-            {beerResultsList}
-          </ul>
-        </div>
-      )
+  const useStyles = makeStyles(theme => ({
+    root: {
+      flexGrow: 1
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary
+    },
+    card: {
+      maxWidth: 800
     }
+  }))
 
+  const classes = useStyles()
+
+  if (noBeer === true) {
     return (
-      <BeerSearchForm
-        beer={searchBeer}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        cancelPath="/beers"
-      />
+      <p>doesnt exist in databse</p>
     )
   }
+
+  if (noBeer === false) {
+    return (
+      <div className={classes.root}>
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          spacing={3}>
+          <Grid item xs={12}>
+            <Paper>
+              {beerResults.map(beer =>
+                <div key={beer.id}>
+                  <h2>{beer.name}</h2>
+                  <Card className={classes.card}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        alt="beer label"
+                        height="140"
+                        image={beer.name}
+                        title="beer label"
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {beer.name}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          {beer.description}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button size="small" color="primary" component={Link} to={{
+                        pathname: '/beers-known-create'
+                      }}>
+                        Rate this Beer
+                      </Button>
+                      <Button size="small" color="primary">
+                        Learn More
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </div>
+              )}
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
+    )
+  }
+
+  return (
+    <BeerSearchForm
+      beer={searchBeer}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      cancelPath="/beers"
+    />
+  )
 }
 
-export default SearchBeer
+export default withRouter(SearchBeer)
