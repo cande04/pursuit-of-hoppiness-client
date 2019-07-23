@@ -46,7 +46,7 @@ class SignUp extends Component {
       .catch(error => {
         console.error(error)
         this.setState({ email: '', password: '', passwordConfirmation: '' })
-        enqueueSnackbar(messages.signUpFailure, { variant: 'danger' })
+        enqueueSnackbar(messages.signUpFailure, { variant: 'error' })
       })
   }
 

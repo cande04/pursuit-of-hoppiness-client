@@ -18,13 +18,28 @@ import Typography from '@material-ui/core/Typography'
 import { red } from '@material-ui/core/colors'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
-const Beer = props => {
+const BeerList = props => {
   const [beer, setBeer] = useState({})
   const [deleted, setDeleted] = useState(false)
 
+  const deleteBeer = () => {
+    const { enqueueSnackbar } = props
+
+    axios({
+      url: `${apiUrl}/beers/${props.beer}`,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token token=${props.user.token}`
+      }
+    })
+      .then(() => setDeleted(true))
+      .then(() => enqueueSnackbar('deleted successfully!', 'success'))
+      .catch(console.error)
+  }
+
   useEffect(() => {
     axios({
-      url: `${apiUrl}/beers/${props.match.params.id}`,
+      url: `${apiUrl}/beers/${props.beer}`,
       method: 'GET',
       headers: {
         'Authorization': `Token token=${props.user.token}`
@@ -33,21 +48,6 @@ const Beer = props => {
       .then(res => setBeer(res.data.beer))
       .catch(console.error)
   }, [])
-
-  const deleteBeer = () => {
-    const { enqueueSnackbar } = props
-
-    axios({
-      url: `${apiUrl}/beers/${props.match.params.id}`,
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Token token=${props.user.token}`
-      }
-    })
-      .then(() => setDeleted(true))
-      .then(() => enqueueSnackbar('deleted successfully!', { variant: 'success' }))
-      .catch(console.error)
-  }
 
   const useStyles = makeStyles(theme => ({
     root: {
@@ -86,7 +86,7 @@ const Beer = props => {
   const ownerButtons = (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Button variant="light" className="btn-sm btn-outline-danger mr-2" onClick={deleteBeer}>delete</Button>
-      <Link to={`/beers/${props.match.params.id}/update`}>
+      <Link to={`/beers/${beer.id}/update`}>
         <Button variant="light" className="btn-sm btn-outline-dark">edit</Button>
       </Link>
     </div>
@@ -144,4 +144,4 @@ const Beer = props => {
   )
 }
 
-export default withSnackbar(withRouter(Beer))
+export default withSnackbar(withRouter(BeerList))

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { withSnackbar } from 'notistack'
 import axios from 'axios'
 
@@ -45,10 +45,16 @@ class CreateKnownBeer extends Component {
         'Authorization': `Token token=${this.props.user.token}`
       },
       data: {
-        beer_id: this.props.beer.id
+        beer_id: this.props.location.beer
       }
     })
-      .then(res => this.setState({ beer: res.data.beer }))
+      .then(res => this.setState({
+        beer: {
+          ...res.data.data,
+          brewery: res.data.data.breweries[0].name,
+          brewery_location: res.data.data.breweries[0].locations[0].locality,
+          style: res.data.data.style.name } }))
+      .then(() => console.log(this.state))
       .catch(console.error)
   }
 
@@ -59,78 +65,110 @@ class CreateKnownBeer extends Component {
     }
   })
 
+  handleSubmit = event => {
+    event.preventDefault()
+
+    const { enqueueSnackbar } = this.props
+
+    axios({
+      url: `${apiUrl}/beers`,
+      method: 'POST',
+      headers: {
+        'Authorization': `Token token=${this.props.user.token}`
+      },
+      data: { beer: this.state.beer }
+    })
+      .then(res => this.setState({ createdBeerId: res.data.beer.id }))
+      .then(() => enqueueSnackbar('you created a new beer!', { variant: 'success' }))
+      .catch(console.error)
+  }
+
   render () {
-    const { email, password } = this.state
+    const { beer, createdBeerId } = this.state
+
+    if (createdBeerId) {
+      return (<Redirect to={`/beers/${createdBeerId}`} />)
+    }
 
     return (
       <div >
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper style={styles.paper}>
-              <form onSubmit={this.onSignIn}>
+              <form onSubmit={this.handleSubmit}>
                 <h3>Rate your Beer</h3>
                 <TextField
                   required
-                  type="email"
-                  name="email"
-                  value={email}
-                  placeholder="Email"
+                  type="text"
+                  name="name"
+                  value={beer.name}
+                  placeholder="name"
                   onChange={this.handleChange}
                   variant="outlined"
                   style={{ width: '100%', marginBottom: '1rem' }}
                 />
                 <TextField InputLabelProps= {{ shrink: true }}
                   required
-                  type="password"
-                  name="password"
-                  value={password}
-                  placeholder="password"
+                  type="text"
+                  name="brewery"
+                  value={beer.brewery}
+                  placeholder="brewery"
                   onChange={this.handleChange}
                   variant="outlined"
                   style={{ width: '100%', marginBottom: '1rem' }}
                 />
                 <TextField InputLabelProps= {{ shrink: true }}
                   required
-                  type="password"
-                  name="password"
-                  value={password}
-                  placeholder="password"
+                  type="text"
+                  name="brewery_location"
+                  value={beer.brewery_location}
+                  placeholder="brewery_location"
                   onChange={this.handleChange}
                   variant="outlined"
                   style={{ width: '100%', marginBottom: '1rem' }}
                 />
                 <TextField InputLabelProps= {{ shrink: true }}
                   required
-                  type="password"
-                  name="password"
-                  value={password}
-                  placeholder="password"
+                  type="text"
+                  name="abv"
+                  value={beer.abv}
+                  placeholder="abv"
                   onChange={this.handleChange}
                   variant="outlined"
                   style={{ width: '100%', marginBottom: '1rem' }}
                 />
                 <TextField InputLabelProps= {{ shrink: true }}
                   required
-                  type="password"
-                  name="password"
-                  value={password}
-                  placeholder="password"
+                  type="text"
+                  name="style"
+                  value={beer.style}
+                  placeholder="style"
                   onChange={this.handleChange}
                   variant="outlined"
                   style={{ width: '100%', marginBottom: '1rem' }}
                 />
                 <TextField InputLabelProps= {{ shrink: true }}
                   required
-                  type="password"
-                  name="password"
-                  value={password}
-                  placeholder="password"
+                  type="number"
+                  name="rating"
+                  value={beer.rating}
+                  placeholder="rating"
+                  onChange={this.handleChange}
+                  variant="outlined"
+                  style={{ width: '100%', marginBottom: '1rem' }}
+                />
+                <TextField InputLabelProps= {{ shrink: true }}
+                  required
+                  type="text"
+                  name="review"
+                  value={beer.review}
+                  placeholder="review"
                   onChange={this.handleChange}
                   variant="outlined"
                   style={{ width: '100%', marginBottom: '1rem' }}
                 />
                 <Button variant="contained" color="primary" type="submit">
-                  sign in
+                  submit
                 </Button>
               </form>
             </Paper>

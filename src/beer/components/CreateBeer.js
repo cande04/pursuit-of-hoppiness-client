@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import { withSnackbar } from 'notistack'
 
+// import Beer from './Beer'
 import BeerForm from '../shared/BeerForm.js'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
@@ -59,6 +61,8 @@ class CreateBeer extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
+    const { enqueueSnackbar } = this.props
+
     axios({
       url: `${apiUrl}/beers`,
       method: 'POST',
@@ -68,7 +72,7 @@ class CreateBeer extends Component {
       data: { beer: this.state.beer }
     })
       .then(res => this.setState({ createdBeerId: res.data.beer.id }))
-      .then(() => this.props.alert('you created a new beer!', 'success'))
+      .then(() => enqueueSnackbar('you created a new beer!', { variant: 'success' }))
       .catch(console.error)
   }
 
@@ -76,6 +80,7 @@ class CreateBeer extends Component {
     const { beer, createdBeerId } = this.state
 
     if (createdBeerId) {
+      console.log(createdBeerId)
       return (<Redirect to={`/beers/${createdBeerId}`} />)
     }
 
@@ -90,4 +95,4 @@ class CreateBeer extends Component {
   }
 }
 
-export default CreateBeer
+export default withSnackbar(CreateBeer)

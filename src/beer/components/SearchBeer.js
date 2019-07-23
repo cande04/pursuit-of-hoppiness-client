@@ -1,5 +1,5 @@
-import React, { useState, Link } from 'react'
-import { withRouter } from 'react-router-dom'
+import React, { useState } from 'react'
+import { withRouter, Link } from 'react-router-dom'
 // import Button from 'react-bootstrap/Button'
 
 import BeerSearchForm from '../shared/BeerSearchForm.js'
@@ -105,11 +105,15 @@ const SearchBeer = props => {
                       </CardContent>
                     </CardActionArea>
                     <CardActions>
-                      <Button size="small" color="primary" component={Link} to={{
-                        pathname: '/beers-known-create'
+                      <Link size="small" color="primary" component={Button} to={{
+                        pathname: '/beers-known-create',
+                        beer: beer.id
                       }}>
                         Rate this Beer
-                      </Button>
+                      </Link>
+                      <Typography gutterBottom component="h5">
+                        {beer.breweries[0].name}
+                      </Typography>
                       <Button size="small" color="primary">
                         Learn More
                       </Button>

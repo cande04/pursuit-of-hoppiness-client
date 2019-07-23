@@ -69,7 +69,7 @@ const BeerForm = ({ beer, handleChange, handleSubmit, cancelPath }) => (
       <Form.Group controlId="rating">
         <Form.Label>rating</Form.Label>
         <Form.Control
-          type="integer"
+          type="number"
           placeholder="rating"
           name="rating"
           onChange={handleChange}

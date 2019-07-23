@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
+import { withSnackbar } from 'notistack'
 
 import apiUrl from '../../apiConfig'
 import BeerForm from '../shared/BeerForm'
@@ -47,6 +48,9 @@ class UpdateBeer extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
+
+    const { enqueueSnackbar } = this.props
+
     axios({
       url: `${apiUrl}/beers/${this.props.match.params.id}`,
       method: 'PATCH',
@@ -59,7 +63,7 @@ class UpdateBeer extends Component {
     })
       // .then(() => this.props.history.push(`/beers/${this.state.beer.id}`))
       .then(res => this.setState({ updated: true }))
-      .then(() => this.props.alert('updated successfully!', 'success'))
+      .then(() => enqueueSnackbar('updated successfully!', { variant: 'success' }))
       .catch(console.error)
   }
 
@@ -85,4 +89,4 @@ class UpdateBeer extends Component {
   }
 }
 
-export default withRouter(UpdateBeer)
+export default withSnackbar(withRouter(UpdateBeer))
