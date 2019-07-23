@@ -7,6 +7,9 @@ import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import Rating from '@material-ui/lab/Rating'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
 
 import apiUrl from '../../apiConfig'
 
@@ -30,7 +33,7 @@ class CreateKnownBeer extends Component {
         brewery_location: '',
         abv: '',
         description: '',
-        rating: '',
+        rating: 0,
         review: ''
       },
       createdBeerId: null
@@ -58,10 +61,11 @@ class CreateKnownBeer extends Component {
       .catch(console.error)
   }
 
-  handleChange = event => this.setState({
+  handleChange = (event, newValue) => this.setState({
     beer: {
       ...this.state.beer,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
+      rating: newValue
     }
   })
 
@@ -149,16 +153,6 @@ class CreateKnownBeer extends Component {
                 />
                 <TextField InputLabelProps= {{ shrink: true }}
                   required
-                  type="number"
-                  name="rating"
-                  value={beer.rating}
-                  placeholder="rating"
-                  onChange={this.handleChange}
-                  variant="outlined"
-                  style={{ width: '100%', marginBottom: '1rem' }}
-                />
-                <TextField InputLabelProps= {{ shrink: true }}
-                  required
                   type="text"
                   name="review"
                   value={beer.review}
@@ -167,6 +161,14 @@ class CreateKnownBeer extends Component {
                   variant="outlined"
                   style={{ width: '100%', marginBottom: '1rem' }}
                 />
+                <Box component="fieldset" mb={3} borderColor="transparent">
+                  <Typography component="legend">Controlled</Typography>
+                  <Rating
+                    name="simple-controlled"
+                    value={beer.rating}
+                    onChange={this.handleChange}
+                  />
+                </Box>
                 <Button variant="contained" color="primary" type="submit">
                   submit
                 </Button>

@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom'
 // import Button from 'react-bootstrap/Button'
 
 import BrewerySearchForm from '../shared/BrewerySearchForm.js'
-// import apiUrl from '../../apiConfig'
+import apiUrl from '../../apiConfig'
 import axios from 'axios'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -29,15 +29,14 @@ const SearchBreweries = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log(Object.values(searchBreweries)[0])
-    const API_KEY = process.env.YELP_API_KEY
-
+    console.log(searchBreweries)
     axios({
-      url: `https://api.yelp.com/v3/businesses/search?limit=50&categories=breweries&location=${Object.values(searchBreweries)[0]}`,
+      url: `${apiUrl}/search-breweries`,
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${props.user.token} ${API_KEY}`
-      }
+        'Authorization': `Token token=${props.user.token}`
+      },
+      data: { searchBreweries }
     })
       .then(res => {
         console.log(res)

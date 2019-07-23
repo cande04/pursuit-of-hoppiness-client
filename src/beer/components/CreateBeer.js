@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { withSnackbar } from 'notistack'
 
-// import Beer from './Beer'
 import BeerForm from '../shared/BeerForm.js'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
@@ -19,7 +18,7 @@ class CreateBeer extends Component {
         brewery_location: '',
         abv: '',
         description: '',
-        rating: '',
+        rating: 0,
         review: ''
       },
       createdBeerId: null
@@ -49,11 +48,12 @@ class CreateBeer extends Component {
   //   this.setState({ beer: newBeer })
   // }
 
-  handleChange = event => {
+  handleChange = (event, newValue) => {
     this.setState({
       beer: {
         ...this.state.beer,
-        [event.target.name]: event.target.value
+        [event.target.name]: event.target.value,
+        rating: newValue
       }
     })
   }

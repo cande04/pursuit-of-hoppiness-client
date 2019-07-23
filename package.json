@@ -6,6 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^4.2.1",
     "@material-ui/icons": "^4.2.1",
+    "@material-ui/lab": "^4.0.0-alpha.20",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
     "chalk": "1.1.3",

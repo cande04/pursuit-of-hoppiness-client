@@ -18,7 +18,7 @@ class UpdateBeer extends Component {
         brewery_location: '',
         abv: '',
         description: '',
-        rating: '',
+        rating: 0,
         review: ''
       },
       updated: false
@@ -37,11 +37,12 @@ class UpdateBeer extends Component {
       .catch(console.error)
   }
 
-  handleChange = event => {
+  handleChange = (event, newValue) => {
     this.setState({
       beer: {
         ...this.state.beer,
-        [event.target.name]: event.target.value
+        [event.target.name]: event.target.value,
+        rating: newValue
       }
     })
   }

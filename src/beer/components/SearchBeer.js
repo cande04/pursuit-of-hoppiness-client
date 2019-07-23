@@ -30,6 +30,8 @@ const SearchBeer = props => {
   const handleSubmit = event => {
     event.preventDefault()
 
+    console.log(searchBeer)
+
     axios({
       url: `${apiUrl}/search-beer`,
       method: 'POST',
