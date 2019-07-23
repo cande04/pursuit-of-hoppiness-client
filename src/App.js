@@ -17,6 +17,12 @@ import UpdateBeer from './beer/components/UpdateBeer.js'
 import SearchBeer from './beer/components/SearchBeer.js'
 import CreateKnownBeer from './beer/components/CreateKnownBeer'
 
+import Breweries from './breweries/components/Breweries.js'
+import CreateBrewery from './breweries/components/CreateBrewery.js'
+import Brewery from './breweries/components/Brewery.js'
+import UpdateBrewery from './breweries/components/UpdateBrewery.js'
+import SearchBreweries from './breweries/components/SearchBreweries.js'
+
 class App extends Component {
   constructor () {
     super()
@@ -70,6 +76,23 @@ class App extends Component {
 
           <AuthenticatedRoute user={user} exact path='/beers-known-create' render={() => (
             <CreateKnownBeer alert={this.alert} user={user} />
+          )} />
+
+          <AuthenticatedRoute user={user} exact path='/breweries' render={() => (
+            <Breweries alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/breweries/:id' render={() => (
+            <Brewery alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/brewery-create' render={() => (
+            <CreateBrewery alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/breweries/:id/update' render={() => (
+            <UpdateBrewery alert={this.alert} user={user} />
+          )} />
+
+          <AuthenticatedRoute user={user} exact path='/search-breweries' render={() => (
+            <SearchBreweries alert={this.alert} user={user} />
           )} />
         </main>
       </SnackbarProvider>

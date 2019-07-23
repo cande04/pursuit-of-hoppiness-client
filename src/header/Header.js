@@ -76,6 +76,9 @@ const Header = ({ user }) => {
               <Button className={classes.menuButton} component={Link} to="/beers">see beers</Button>
               <Button className={classes.menuButton} component={Link} to="/beers-create">add a beer</Button>
               <Button className={classes.menuButton} component={Link} to="/search-beer">find a beer</Button>
+              <Button className={classes.menuButton} component={Link} to="/breweries">see breweries</Button>
+              <Button className={classes.menuButton} component={Link} to="/brewery-create">add a brewery</Button>
+              <Button className={classes.menuButton} component={Link} to="/search-breweries">search for breweries</Button>
             </React.Fragment>
           ) : (
             <React.Fragment>
