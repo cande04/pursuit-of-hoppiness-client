@@ -14,6 +14,7 @@ class CreateBrewery extends Component {
       brewery: {
         name: '',
         location: '',
+        image_url: '',
         rating: 0,
         review: ''
       },

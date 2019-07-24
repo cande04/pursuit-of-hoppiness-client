@@ -29,6 +29,7 @@ class CreateKnownBrewery extends Component {
       brewery: {
         name: '',
         location: '',
+        image_url: '',
         rating: 0,
         review: ''
       },
@@ -53,6 +54,7 @@ class CreateKnownBrewery extends Component {
           ...res.data,
           name: res.data.name,
           location: `${res.data.location.address1} ${res.data.location.city}, ${res.data.location.state} ${res.data.location.zip_code}`,
+          image_url: res.data.image_url,
           rating: 0
         }
       })
@@ -61,13 +63,15 @@ class CreateKnownBrewery extends Component {
       .catch(console.error)
   }
 
-  handleChange = (event, newValue) => this.setState({
-    brewery: {
-      ...this.state.brewery,
-      [event.target.name]: event.target.value,
-      rating: newValue
-    }
-  })
+  handleChange = (event, newValue) => {
+    this.setState({
+      brewery: {
+        ...this.state.brewery,
+        [event.target.name]: event.target.value,
+        rating: newValue
+      }
+    })
+  }
 
   handleSubmit = event => {
     event.preventDefault()
@@ -90,6 +94,7 @@ class CreateKnownBrewery extends Component {
 
   render () {
     const { brewery, createdBreweryId } = this.state
+    console.log(brewery)
 
     if (createdBreweryId) {
       return (<Redirect to={`/breweries/${createdBreweryId}`} />)

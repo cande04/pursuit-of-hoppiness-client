@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
+import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
 import Collapse from '@material-ui/core/Collapse'
@@ -33,7 +34,6 @@ const Brewery = props => {
       }
     })
       .then(res => setBrewery(res.data.brewery))
-      .then(() => console.log(brewery))
       .catch(console.error)
   }, [])
 
@@ -99,11 +99,25 @@ const Brewery = props => {
     return (<Redirect to="/" />)
   }
 
+  let image
+  if (!brewery.image_url) {
+    image = require('../beer_stock.jpg')
+  } else {
+    image = brewery.image_url
+  }
+
   return (
     <Card className={classes.card}>
       <CardHeader
         title={brewery.name}
         subheader={brewery.location}
+      />
+      <CardMedia
+        component="img"
+        alt="brewery label"
+        height="240"
+        image={image}
+        title="brewery label"
       />
       <CardContent>
         <Box component="fieldset" mb={3} borderColor="transparent">
