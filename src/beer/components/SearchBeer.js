@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { withRouter, Link } from 'react-router-dom'
-// import Button from 'react-bootstrap/Button'
 
 import BeerSearchForm from '../shared/BeerSearchForm.js'
 import apiUrl from '../../apiConfig'
@@ -62,7 +61,8 @@ const SearchBeer = props => {
       color: theme.palette.text.secondary
     },
     card: {
-      maxWidth: 800
+      maxWidth: 800,
+      margin: 3
     }
   }))
 
@@ -70,13 +70,30 @@ const SearchBeer = props => {
 
   if (noBeer === true) {
     return (
-      <p>doesnt exist in databse</p>
+      <div className={classes.root}>
+        <h3>doesnt exist in database</h3>
+        <Paper className={classes.paper}>
+          <h3>try adding it yourself!</h3>
+          <Button variant="contained" color="primary" component={Link} to='/beers-create'>add beer</Button>
+        </Paper>
+      </div>
     )
   }
 
   if (noBeer === false) {
+    beerResults.map(beer => {
+      if (beer.labels === undefined) {
+        beer.image = require('../../breweries/beer_stock.jpg')
+      } else {
+        beer.image = beer.labels.large
+      }
+    })
     return (
       <div className={classes.root}>
+        <Paper className={classes.paper}>
+          <h3>dont see your beer? try adding it yourself!</h3>
+          <Button variant="contained" color="primary" component={Link} to='/beers-create'>add beer</Button>
+        </Paper>
         <Grid
           container
           direction="column"
@@ -85,21 +102,23 @@ const SearchBeer = props => {
           spacing={3}>
           <Grid item xs={12}>
             <Paper>
-              {beerResults.map(beer =>
+              {beerResults.map((beer, index) =>
                 <div key={beer.id}>
-                  <h2>{beer.name}</h2>
                   <Card className={classes.card}>
                     <CardActionArea>
                       <CardMedia
                         component="img"
                         alt="beer label"
-                        height="140"
-                        image={beer.name}
+                        height="240"
+                        image={beer.image}
                         title="beer label"
                       />
                       <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                           {beer.name}
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="h4">
+                          {beer.breweries[0].name}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
                           {beer.description}
@@ -107,17 +126,11 @@ const SearchBeer = props => {
                       </CardContent>
                     </CardActionArea>
                     <CardActions>
-                      <Link size="small" color="primary" component={Button} to={{
+                      <Button variant="contained" color="primary" component={Link} to={{
                         pathname: '/beers-known-create',
                         beer: beer.id
                       }}>
                         Rate this Beer
-                      </Link>
-                      <Typography gutterBottom component="h5">
-                        {beer.breweries[0].name}
-                      </Typography>
-                      <Button size="small" color="primary">
-                        Learn More
                       </Button>
                     </CardActions>
                   </Card>

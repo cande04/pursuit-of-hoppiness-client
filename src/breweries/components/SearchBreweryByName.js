@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 // import Button from 'react-bootstrap/Button'
 
-import BrewerySearchForm from '../shared/BrewerySearchForm.js'
+import BreweryNameForm from '../shared/BreweryNameForm.js'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
 
@@ -17,26 +17,26 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
-const SearchBreweries = props => {
-  const [searchBreweries, setSearchBreweries] = useState('')
+const SearchBreweryByName = props => {
+  const [breweryInfo, setBreweryInfo] = useState({ searchBreweries: '', breweryName: '' })
+  // const [searchBreweries, setSearchBreweries] = useState('')
   const [breweriesResults, setBreweriesResults] = useState([])
   const [noBreweries, setNoBreweries] = useState(null)
 
   const handleChange = event => {
     event.persist()
-    setSearchBreweries(brewery => ({ [event.target.name]: event.target.value }))
+    setBreweryInfo(breweryInfo => ({ ...breweryInfo, [event.target.name]: event.target.value }))
   }
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log(searchBreweries)
     axios({
-      url: `${apiUrl}/search-breweries`,
+      url: `${apiUrl}/search-for-brewery`,
       method: 'POST',
       headers: {
         'Authorization': `Token token=${props.user.token}`
       },
-      data: { searchBreweries }
+      data: { breweryInfo }
     })
       .then(res => {
         console.log(res.data.businesses)
@@ -135,8 +135,8 @@ const SearchBreweries = props => {
   }
 
   return (
-    <BrewerySearchForm
-      brewery={searchBreweries}
+    <BreweryNameForm
+      breweryInfo={breweryInfo}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       cancelPath="/breweries"
@@ -144,4 +144,4 @@ const SearchBreweries = props => {
   )
 }
 
-export default withRouter(SearchBreweries)
+export default withRouter(SearchBreweryByName)

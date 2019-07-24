@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 
 import BreweryList from './BreweryList.js'
 
@@ -56,6 +58,10 @@ const Breweries = props => {
 
   return (
     <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <h4>View Breweries by Rating</h4>
+        <Button variant="contained" color="primary" component={Link} to='/breweries-by-rating'>sort by rating</Button>
+      </Paper>
       <Grid
         container
         direction="column"

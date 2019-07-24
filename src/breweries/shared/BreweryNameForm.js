@@ -14,19 +14,29 @@ const styles = {
   }
 }
 
-const BeerSearchForm = ({ searchBeer, handleChange, handleSubmit, cancelPath }) => (
+const BreweryNameForm = ({ breweryInfo, handleChange, handleSubmit, cancelPath }) => (
   <div >
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Paper style={styles.paper}>
           <form onSubmit={handleSubmit}>
-            <h3>Search Beer</h3>
+            <h3>Search Breweries by Location</h3>
             <TextField
               required
               type="text"
-              name="searchBeer"
-              value={searchBeer}
-              placeholder="Beer Name"
+              name="searchBreweries"
+              value={breweryInfo.searchBreweries}
+              placeholder="Location"
+              onChange={handleChange}
+              variant="outlined"
+              style={{ width: '100%', marginBottom: '1rem' }}
+            />
+            <TextField
+              required
+              type="text"
+              name="breweryName"
+              value={breweryInfo.breweryName}
+              placeholder="Brewery Name"
               onChange={handleChange}
               variant="outlined"
               style={{ width: '100%', marginBottom: '1rem' }}
@@ -44,4 +54,4 @@ const BeerSearchForm = ({ searchBeer, handleChange, handleSubmit, cancelPath }) 
   </div>
 )
 
-export default BeerSearchForm
+export default BreweryNameForm

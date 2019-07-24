@@ -24,6 +24,7 @@ import UpdateBrewery from './breweries/components/UpdateBrewery.js'
 import SearchBreweries from './breweries/components/SearchBreweries.js'
 import CreateKnownBrewery from './breweries/components/CreateKnownBrewery.js'
 import BreweriesByRating from './breweries/components/BreweriesByRating.js'
+import SearchBreweryByName from './breweries/components/SearchBreweryByName.js'
 
 class App extends Component {
   constructor () {
@@ -103,6 +104,10 @@ class App extends Component {
 
           <AuthenticatedRoute user={user} exact path='/breweries-by-rating' render={() => (
             <BreweriesByRating alert={this.alert} user={user} />
+          )} />
+
+          <AuthenticatedRoute user={user} exact path='/search-for-brewery' render={() => (
+            <SearchBreweryByName alert={this.alert} user={user} />
           )} />
 
         </main>

@@ -138,7 +138,7 @@ class CreateKnownBrewery extends Component {
                   style={{ width: '100%', marginBottom: '1rem' }}
                 />
                 <Box component="fieldset" mb={3} borderColor="transparent">
-                  <Typography component="legend">Controlled</Typography>
+                  <Typography component="legend">Rating:</Typography>
                   <Rating
                     name="simple-controlled"
                     value={brewery.rating}

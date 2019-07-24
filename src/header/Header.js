@@ -74,12 +74,10 @@ const Header = ({ user }) => {
               <Button className={classes.menuButton} component={Link} to="/change-password">Change Password</Button>
               <Button className={classes.menuButton} component={Link} to="/sign-out">Sign Out</Button>
               <Button className={classes.menuButton} component={Link} to="/beers">see beers</Button>
-              <Button className={classes.menuButton} component={Link} to="/beers-create">add a beer</Button>
               <Button className={classes.menuButton} component={Link} to="/search-beer">find a beer</Button>
               <Button className={classes.menuButton} component={Link} to="/breweries">see breweries</Button>
-              <Button className={classes.menuButton} component={Link} to="/breweries-by-rating">see breweries by rating</Button>
-              <Button className={classes.menuButton} component={Link} to="/brewery-create">add a brewery</Button>
-              <Button className={classes.menuButton} component={Link} to="/search-breweries">search for breweries</Button>
+              <Button className={classes.menuButton} component={Link} to="/search-breweries">search for breweries by location</Button>
+              <Button className={classes.menuButton} component={Link} to="/search-for-brewery">search for breweries by name</Button>
             </React.Fragment>
           ) : (
             <React.Fragment>

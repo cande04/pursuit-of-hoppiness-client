@@ -106,7 +106,7 @@ const BeerList = props => {
       />
       <CardContent>
         <Box component="fieldset" mb={3} borderColor="transparent">
-          <Typography component="legend">Read only</Typography>
+          <Typography component="legend">Rating:</Typography>
           <Rating value={beer.rating} readOnly />
         </Box>
         <Typography variant="body2" color="textSecondary" component="p">

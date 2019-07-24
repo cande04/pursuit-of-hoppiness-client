@@ -41,7 +41,20 @@ const BreweriesByRating = props => {
 
   const classes = useStyles()
 
-  const sortedBreweries = breweries.sort((a, b) =>
+  const alphabeticalBreweries = breweries.sort(function (a, b) {
+    const nameA = a.name.toUpperCase()
+    const nameB = b.name.toUpperCase()
+    if (nameA < nameB) {
+      return -1
+    }
+    if (nameA > nameB) {
+      return 1
+    }
+
+    return 0
+  }).reverse()
+
+  const sortedBreweries = alphabeticalBreweries.sort((a, b) =>
     a.rating - b.rating).reverse()
   // console.log(sortedBreweries.reverse())
 
