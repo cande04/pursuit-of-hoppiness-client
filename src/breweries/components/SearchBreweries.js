@@ -39,9 +39,9 @@ const SearchBreweries = props => {
       data: { searchBreweries }
     })
       .then(res => {
-        console.log(res)
-        if (res.data.totalResults !== 0) {
-          setBreweriesResults(res.data.data)
+        console.log(res.data.businesses)
+        if (res.data.businesses !== 0) {
+          setBreweriesResults(res.data.businesses)
           setNoBreweries(false)
         } else {
           setNoBreweries(true)
@@ -92,7 +92,7 @@ const SearchBreweries = props => {
                         component="img"
                         alt="brewery label"
                         height="140"
-                        image={brewery.name}
+                        image={brewery.image_url}
                         title="brewery label"
                       />
                       <CardContent>
@@ -100,19 +100,19 @@ const SearchBreweries = props => {
                           {brewery.name}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                          {brewery.description}
+                          {brewery.location.address1} {brewery.location.city}, {brewery.location.state} {brewery.location.zip_code}
                         </Typography>
                       </CardContent>
                     </CardActionArea>
                     <CardActions>
                       <Link size="small" color="primary" component={Button} to={{
                         pathname: '/breweries-known-create',
-                        brewry: brewery.id
+                        brewery: brewery.id
                       }}>
                         Rate this Brewery
                       </Link>
                       <Typography gutterBottom component="h5">
-                        {brewery.breweries[0].name}
+                        {brewery.display_phone}
                       </Typography>
                       <Button size="small" color="primary">
                         Learn More

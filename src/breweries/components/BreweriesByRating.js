@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid'
 
 import BreweryList from './BreweryList.js'
 
-const Breweries = props => {
+const BreweriesByRating = props => {
   const [breweries, setBreweries] = useState([])
   const [error, setError] = useState(null)
 
@@ -41,18 +41,9 @@ const Breweries = props => {
 
   const classes = useStyles()
 
-  const alphabeticalBreweries = breweries.sort(function (a, b) {
-    const nameA = a.name.toUpperCase()
-    const nameB = b.name.toUpperCase()
-    if (nameA < nameB) {
-      return -1
-    }
-    if (nameA > nameB) {
-      return 1
-    }
-
-    return 0
-  })
+  const sortedBreweries = breweries.sort((a, b) =>
+    a.rating - b.rating).reverse()
+  // console.log(sortedBreweries.reverse())
 
   return (
     <div className={classes.root}>
@@ -64,7 +55,7 @@ const Breweries = props => {
         spacing={3}>
         <Grid item xs={12}>
           <Paper>
-            {alphabeticalBreweries.map(brewery => (
+            {sortedBreweries.map(brewery => (
               <BreweryList key={brewery.id} user={props.user} brewery={brewery.id}/>
             ))}
           </Paper>
@@ -74,4 +65,4 @@ const Breweries = props => {
   )
 }
 
-export default Breweries
+export default BreweriesByRating

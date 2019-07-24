@@ -14,7 +14,7 @@ class CreateBrewery extends Component {
       brewery: {
         name: '',
         location: '',
-        rating: '',
+        rating: 0,
         review: ''
       },
       createdBreweryId: null

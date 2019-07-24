@@ -17,6 +17,8 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import { red } from '@material-ui/core/colors'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import Rating from '@material-ui/lab/Rating'
+import Box from '@material-ui/core/Box'
 
 const Brewery = props => {
   const [brewery, setBrewery] = useState({})
@@ -31,6 +33,7 @@ const Brewery = props => {
       }
     })
       .then(res => setBrewery(res.data.brewery))
+      .then(() => console.log(brewery))
       .catch(console.error)
   }, [])
 
@@ -103,9 +106,10 @@ const Brewery = props => {
         subheader={brewery.location}
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="h5">
-          {brewery.rating}
-        </Typography>
+        <Box component="fieldset" mb={3} borderColor="transparent">
+          <Typography component="legend">Read only</Typography>
+          <Rating value={brewery.rating} readOnly />
+        </Box>
         <Typography variant="body2" color="textSecondary" component="p">
           {brewery.review}
         </Typography>

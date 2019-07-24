@@ -14,7 +14,7 @@ class UpdateBrewery extends Component {
       brewery: {
         name: '',
         location: '',
-        rating: '',
+        rating: 0,
         review: ''
       },
       updated: false
