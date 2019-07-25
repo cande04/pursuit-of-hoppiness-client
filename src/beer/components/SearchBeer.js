@@ -74,7 +74,7 @@ const SearchBeer = props => {
         <h3>doesnt exist in database</h3>
         <Paper className={classes.paper}>
           <h3>try adding it yourself!</h3>
-          <Button variant="contained" color="primary" component={Link} to='/beers-create'>add beer</Button>
+          <Button variant="outlined" color="default" component={Link} to='/beers-create'>add beer</Button>
         </Paper>
       </div>
     )
@@ -92,7 +92,7 @@ const SearchBeer = props => {
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <h3>dont see your beer? try adding it yourself!</h3>
-          <Button variant="contained" color="primary" component={Link} to='/beers-create'>add beer</Button>
+          <Button variant="outlined" color="default" component={Link} to='/beers-create'>add beer</Button>
         </Paper>
         <Grid
           container
@@ -126,7 +126,7 @@ const SearchBeer = props => {
                       </CardContent>
                     </CardActionArea>
                     <CardActions>
-                      <Button variant="contained" color="primary" component={Link} to={{
+                      <Button variant="outlined" color="default" component={Link} to={{
                         pathname: '/beers-known-create',
                         beer: beer.id
                       }}>

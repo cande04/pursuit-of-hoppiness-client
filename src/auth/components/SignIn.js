@@ -78,7 +78,7 @@ class SignIn extends Component {
                   variant="outlined"
                   style={{ width: '100%', marginBottom: '1rem' }}
                 />
-                <Button variant="contained" color="primary" type="submit">
+                <Button variant="outlined" color="default" type="submit">
                   sign in
                 </Button>
               </form>

@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 import { SnackbarProvider } from 'notistack'
 
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
+import Home from './home/Home'
 import Header from './header/Header'
 import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
@@ -24,7 +25,8 @@ import UpdateBrewery from './breweries/components/UpdateBrewery.js'
 import SearchBreweries from './breweries/components/SearchBreweries.js'
 import CreateKnownBrewery from './breweries/components/CreateKnownBrewery.js'
 import BreweriesByRating from './breweries/components/BreweriesByRating.js'
-import SearchBreweryByName from './breweries/components/SearchBreweryByName.js'
+
+// import SearchBreweryByName from './breweries/components/SearchBreweryByName.js'
 
 class App extends Component {
   constructor () {
@@ -46,7 +48,7 @@ class App extends Component {
       <SnackbarProvider maxSnack={3}>
         <Header user={user} />
 
-        <main className="container">
+        <main className='container'>
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
@@ -60,6 +62,9 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
 
+          <AuthenticatedRoute user={user} exact path='/' render={() => (
+            <Home alert={this.alert} user={user} />
+          )} />
           <AuthenticatedRoute user={user} exact path='/beers' render={() => (
             <Beers alert={this.alert} user={user} />
           )} />
@@ -104,10 +109,6 @@ class App extends Component {
 
           <AuthenticatedRoute user={user} exact path='/breweries-by-rating' render={() => (
             <BreweriesByRating alert={this.alert} user={user} />
-          )} />
-
-          <AuthenticatedRoute user={user} exact path='/search-for-brewery' render={() => (
-            <SearchBreweryByName alert={this.alert} user={user} />
           )} />
 
         </main>

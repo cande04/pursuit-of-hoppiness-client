@@ -72,7 +72,7 @@ const SearchBreweries = props => {
         <h3>doesnt exist in database</h3>
         <Paper className={classes.paper}>
           <h3>try adding it yourself!</h3>
-          <Button variant="contained" color="primary" component={Link} to='/brewery-create'>add brewery</Button>
+          <Button variant="outlined" color="default" component={Link} to='/brewery-create'>add brewery</Button>
         </Paper>
       </div>
     )
@@ -83,7 +83,7 @@ const SearchBreweries = props => {
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <h3>dont see your brewery? try adding it yourself!</h3>
-          <Button variant="contained" color="primary" component={Link} to='/brewery-create'>add brewery</Button>
+          <Button variant="outlined" color="default" component={Link} to='/brewery-create'>add brewery</Button>
         </Paper>
         <Grid
           container
@@ -117,7 +117,7 @@ const SearchBreweries = props => {
                       </CardContent>
                     </CardActionArea>
                     <CardActions>
-                      <Button variant="contained" color="primary" component={Link} to={{
+                      <Button variant="outlined" color="default" component={Link} to={{
                         pathname: '/breweries-known-create',
                         brewery: brewery.id
                       }}>

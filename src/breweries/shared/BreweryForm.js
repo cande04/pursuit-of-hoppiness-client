@@ -30,7 +30,7 @@ const BreweryForm = ({ brewery, handleChange, handleSubmit, cancelPath }) => (
               name="name"
               value={brewery.name}
               placeholder="Brewery Name"
-              onChange={this.handleChange}
+              onChange={handleChange}
               variant="outlined"
               style={{ width: '100%', marginBottom: '1rem' }}
             />
@@ -40,7 +40,7 @@ const BreweryForm = ({ brewery, handleChange, handleSubmit, cancelPath }) => (
               name="location"
               value={brewery.location}
               placeholder="Brewery Location"
-              onChange={this.handleChange}
+              onChange={handleChange}
               variant="outlined"
               style={{ width: '100%', marginBottom: '1rem' }}
             />
@@ -50,7 +50,7 @@ const BreweryForm = ({ brewery, handleChange, handleSubmit, cancelPath }) => (
               name="review"
               value={brewery.review}
               placeholder="Your Review"
-              onChange={this.handleChange}
+              onChange={handleChange}
               variant="outlined"
               style={{ width: '100%', marginBottom: '1rem' }}
             />
@@ -62,10 +62,10 @@ const BreweryForm = ({ brewery, handleChange, handleSubmit, cancelPath }) => (
                 onChange={handleChange}
               />
             </Box>
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="outlined" color="default" type="submit">
               Submit
             </Button>
-            <Button variant="contained" color="primary" component={Link} to={cancelPath}>
+            <Button variant="outlined" color="default" component={Link} to={cancelPath}>
               cancel
             </Button>
           </form>

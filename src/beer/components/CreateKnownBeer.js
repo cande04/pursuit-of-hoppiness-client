@@ -162,14 +162,14 @@ class CreateKnownBeer extends Component {
                   style={{ width: '100%', marginBottom: '1rem' }}
                 />
                 <Box component="fieldset" mb={3} borderColor="transparent">
-                  <Typography component="legend">Controlled</Typography>
+                  <Typography component="legend">Rating:</Typography>
                   <Rating
                     name="simple-controlled"
                     value={beer.rating}
                     onChange={this.handleChange}
                   />
                 </Box>
-                <Button variant="contained" color="primary" type="submit">
+                <Button variant="outlined" color="default" type="submit">
                   submit
                 </Button>
               </form>

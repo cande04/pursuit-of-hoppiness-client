@@ -41,10 +41,10 @@ const BreweryNameForm = ({ breweryInfo, handleChange, handleSubmit, cancelPath }
               variant="outlined"
               style={{ width: '100%', marginBottom: '1rem' }}
             />
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="outlined" color="default" type="submit">
               Submit
             </Button>
-            <Button variant="contained" color="primary" component={Link} to={cancelPath}>
+            <Button variant="outlined" color="default" component={Link} to={cancelPath}>
               cancel
             </Button>
           </form>

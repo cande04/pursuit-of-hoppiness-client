@@ -5,6 +5,19 @@ import { withSnackbar } from 'notistack'
 import { changePassword } from '../api'
 import messages from '../messages'
 
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
+const styles = {
+  paper: {
+    maxWidth: '600px',
+    padding: '2rem',
+    margin: '2rem auto'
+  }
+}
+
 class ChangePassword extends Component {
   constructor () {
     super()
@@ -38,29 +51,40 @@ class ChangePassword extends Component {
     const { oldPassword, newPassword } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.onChangePassword}>
-        <h3>Change Password</h3>
-
-        <label htmlFor="oldpw">Old Password</label>
-        <input
-          required
-          name="oldPassword"
-          value={oldPassword}
-          type="password"
-          placeholder="Old Password"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="newPassword">New Password</label>
-        <input
-          required
-          name="newPassword"
-          value={newPassword}
-          type="password"
-          placeholder="New Password"
-          onChange={this.handleChange}
-        />
-        <button type="submit">Change Password</button>
-      </form>
+      <div >
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Paper style={styles.paper}>
+              <form onSubmit={this.onChangePassword}>
+                <h3>Change Password</h3>
+                <TextField
+                  required
+                  type="password"
+                  name="oldPassword"
+                  value={oldPassword}
+                  placeholder="Old Password"
+                  onChange={this.handleChange}
+                  variant="outlined"
+                  style={{ width: '100%', marginBottom: '1rem' }}
+                />
+                <TextField InputLabelProps= {{ shrink: true }}
+                  required
+                  type="password"
+                  name="newPassword"
+                  value={newPassword}
+                  placeholder="New Password"
+                  onChange={this.handleChange}
+                  variant="outlined"
+                  style={{ width: '100%', marginBottom: '1rem' }}
+                />
+                <Button variant="outlined" color="default" type="submit">
+                  Change Password
+                </Button>
+              </form>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
     )
   }
 }

@@ -145,7 +145,7 @@ class CreateKnownBrewery extends Component {
                     onChange={this.handleChange}
                   />
                 </Box>
-                <Button variant="contained" color="primary" type="submit">
+                <Button variant="outlined" color="default" type="submit">
                   submit
                 </Button>
               </form>

@@ -33,11 +33,12 @@ class UpdateBrewery extends Component {
       .catch(console.error)
   }
 
-  handleChange = event => {
+  handleChange = (event, newValue) => {
     this.setState({
       brewery: {
         ...this.state.brewery,
-        [event.target.name]: event.target.value
+        [event.target.name]: event.target.value,
+        rating: newValue
       }
     })
   }
