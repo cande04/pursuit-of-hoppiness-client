@@ -24,7 +24,6 @@ const Beers = props => {
       }
     })
       .then(res => {
-        console.log(res.data.beers)
         if (res.data.beers.length !== 0) {
           setBeers(res.data.beers)
         } else {

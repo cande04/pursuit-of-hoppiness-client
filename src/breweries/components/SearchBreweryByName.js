@@ -39,7 +39,6 @@ const SearchBreweryByName = props => {
       data: { breweryInfo }
     })
       .then(res => {
-        console.log(res.data.businesses)
         if (res.data.businesses !== undefined) {
           setBreweriesResults(res.data.businesses)
           setNoBreweries(false)

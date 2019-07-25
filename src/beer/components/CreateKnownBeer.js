@@ -57,7 +57,6 @@ class CreateKnownBeer extends Component {
           brewery: res.data.data.breweries[0].name,
           brewery_location: res.data.data.breweries[0].locations[0].locality,
           style: res.data.data.style.name } }))
-      .then(() => console.log(this.state))
       .catch(console.error)
   }
 

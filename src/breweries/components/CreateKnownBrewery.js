@@ -38,7 +38,6 @@ class CreateKnownBrewery extends Component {
   }
 
   componentDidMount () {
-    console.log(this.props)
     axios({
       url: `${apiUrl}/get-brewery`,
       method: 'POST',
@@ -59,7 +58,6 @@ class CreateKnownBrewery extends Component {
         }
       })
       )
-      .then(() => console.log(this.state))
       .catch(console.error)
   }
 
@@ -77,7 +75,6 @@ class CreateKnownBrewery extends Component {
     event.preventDefault()
 
     const { enqueueSnackbar } = this.props
-    console.log(this.state.brewery)
 
     axios({
       url: `${apiUrl}/breweries`,
@@ -94,7 +91,6 @@ class CreateKnownBrewery extends Component {
 
   render () {
     const { brewery, createdBreweryId } = this.state
-    console.log(brewery)
 
     if (createdBreweryId) {
       return (<Redirect to={`/breweries/${createdBreweryId}`} />)

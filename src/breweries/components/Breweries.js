@@ -25,7 +25,6 @@ const Breweries = props => {
       }
     })
       .then(res => {
-        console.log(res.data.breweries)
         if (res.data.breweries.length !== 0) {
           setBreweries(res.data.breweries)
         } else {

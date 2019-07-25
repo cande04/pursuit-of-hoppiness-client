@@ -80,7 +80,6 @@ class CreateBeer extends Component {
     const { beer, createdBeerId } = this.state
 
     if (createdBeerId) {
-      console.log(createdBeerId)
       return (<Redirect to={`/beers/${createdBeerId}`} />)
     }
 

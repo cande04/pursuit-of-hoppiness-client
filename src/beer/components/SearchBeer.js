@@ -29,8 +29,6 @@ const SearchBeer = props => {
   const handleSubmit = event => {
     event.preventDefault()
 
-    console.log(searchBeer)
-
     axios({
       url: `${apiUrl}/search-beer`,
       method: 'POST',
@@ -40,7 +38,6 @@ const SearchBeer = props => {
       data: { searchBeer }
     })
       .then(res => {
-        console.log(res.data.data)
         if (res.data.totalResults !== 0) {
           setBeerResults(res.data.data)
           setNoBeer(false)

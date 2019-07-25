@@ -29,7 +29,6 @@ const SearchBreweries = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log(searchBreweries)
     axios({
       url: `${apiUrl}/search-breweries`,
       method: 'POST',
@@ -39,7 +38,6 @@ const SearchBreweries = props => {
       data: { searchBreweries }
     })
       .then(res => {
-        console.log(res.data.businesses)
         if (res.data.businesses !== undefined) {
           setBreweriesResults(res.data.businesses)
           setNoBreweries(false)
