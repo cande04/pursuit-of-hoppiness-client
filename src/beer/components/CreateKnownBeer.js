@@ -60,13 +60,22 @@ class CreateKnownBeer extends Component {
       .catch(console.error)
   }
 
-  handleChange = (event, newValue) => this.setState({
+  handleChange = (event) => this.setState({
     beer: {
       ...this.state.beer,
-      [event.target.name]: event.target.value,
-      rating: newValue
+      [event.target.name]: event.target.value
     }
   })
+
+  handleRatingChange = (event, newValue) => {
+    this.setState({
+      beer: {
+        ...this.state.beer,
+        [event.target.name]: event.target.value,
+        rating: newValue
+      }
+    })
+  }
 
   handleSubmit = event => {
     event.preventDefault()
@@ -163,9 +172,9 @@ class CreateKnownBeer extends Component {
                 <Box component="fieldset" mb={3} borderColor="transparent">
                   <Typography component="legend">Rating:</Typography>
                   <Rating
-                    name="simple-controlled"
+                    name="rating"
                     value={beer.rating}
-                    onChange={this.handleChange}
+                    onChange={this.handleRatingChange}
                   />
                 </Box>
                 <Button variant="outlined" color="default" type="submit">

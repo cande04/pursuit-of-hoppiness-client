@@ -33,7 +33,16 @@ class UpdateBrewery extends Component {
       .catch(console.error)
   }
 
-  handleChange = (event, newValue) => {
+  handleChange = (event) => {
+    this.setState({
+      brewery: {
+        ...this.state.brewery,
+        [event.target.name]: event.target.value
+      }
+    })
+  }
+
+  handleRatingChange = (event, newValue) => {
     this.setState({
       brewery: {
         ...this.state.brewery,
@@ -81,6 +90,7 @@ class UpdateBrewery extends Component {
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         cancelPath={`/breweries/${this.props.match.params.id}`}
+        handleRatingChange={this.handleRatingChange}
       />
     )
   }

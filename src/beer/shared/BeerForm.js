@@ -17,7 +17,7 @@ const styles = {
   }
 }
 
-const BeerForm = ({ beer, handleChange, handleSubmit, cancelPath }) => (
+const BeerForm = ({ beer, handleChange, handleRatingChange, handleSubmit, cancelPath }) => (
   <div >
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -97,9 +97,9 @@ const BeerForm = ({ beer, handleChange, handleSubmit, cancelPath }) => (
             <Box component="fieldset" mb={3} borderColor="transparent">
               <Typography component="legend">Rating:</Typography>
               <Rating
-                name="simple-controlled"
+                name="rating"
                 value={beer.rating}
-                onChange={handleChange}
+                onChange={handleRatingChange}
               />
             </Box>
             <Button variant="outlined" color="default" type="submit">

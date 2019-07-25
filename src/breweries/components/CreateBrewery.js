@@ -31,6 +31,16 @@ class CreateBrewery extends Component {
     })
   }
 
+  handleRatingChange = (event, newValue) => {
+    this.setState({
+      brewery: {
+        ...this.state.brewery,
+        [event.target.name]: event.target.value,
+        rating: newValue
+      }
+    })
+  }
+
   handleSubmit = event => {
     event.preventDefault()
 
@@ -61,6 +71,7 @@ class CreateBrewery extends Component {
         brewery={brewery}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        handleRatingChange={this.handleRatingChange}
         cancelPath="/breweries"
       />
     )

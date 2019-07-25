@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter, Link, Redirect } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
 import { withSnackbar } from 'notistack'
 
 import apiUrl from '../../apiConfig'
@@ -22,6 +21,7 @@ import Rating from '@material-ui/lab/Rating'
 import Box from '@material-ui/core/Box'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 
 const Brewery = props => {
   const [brewery, setBrewery] = useState({})
