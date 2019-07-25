@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter, Link, Redirect } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
 import { withSnackbar } from 'notistack'
 
 import apiUrl from '../../apiConfig'
@@ -20,6 +19,7 @@ import { red } from '@material-ui/core/colors'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Rating from '@material-ui/lab/Rating'
 import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
 
 const BreweryList = props => {
   const [brewery, setBrewery] = useState({})
@@ -88,9 +88,9 @@ const BreweryList = props => {
 
   const ownerButtons = (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <Button variant="light" className="btn-sm btn-outline-danger mr-2" onClick={deleteBrewery}>delete</Button>
+      <Button variant="primary" className="btn-sm btn-outline-danger mr-2" onClick={deleteBrewery}>delete</Button>
       <Link to={`/breweries/${brewery.id}/update`}>
-        <Button variant="light" className="btn-sm btn-outline-dark">edit</Button>
+        <Button variant="primary" className="btn-sm btn-outline-dark">edit</Button>
       </Link>
     </div>
   )
@@ -126,6 +126,9 @@ const BreweryList = props => {
         <Typography variant="body2" color="textSecondary" component="p">
           {brewery.review}
         </Typography>
+        <CardActions>
+          {ownerButtons}
+        </CardActions>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton
@@ -144,9 +147,6 @@ const BreweryList = props => {
         <CardContent>
           <p>something</p>
         </CardContent>
-        <CardActions>
-          {ownerButtons}
-        </CardActions>
       </Collapse>
     </Card>
   )
