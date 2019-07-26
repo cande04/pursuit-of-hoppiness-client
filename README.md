@@ -4,7 +4,7 @@ Pursuit of Hoppiness - Client
 Pursuit of Hoppiness is a beer and brewery tracker. You can search for a specific beer or brewery to find starter information, then rate them and store them in the application for later retreival. This app uses two third party APIs - BreweryDb to search a limited database of beers, and Yelp to find information for breweries based on location.
 
 ## Back-end
-- repo: https://github.com/cande04/pursuit_of_hoppiness_api/
+- repo: https://github.com/cande04/pursuit-of-hoppiness-api
 - deployed site: https://pursuit-of-hoppiness-04.herokuapp.com/
 
 ## List of Front End Technologies
