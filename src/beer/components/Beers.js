@@ -52,12 +52,21 @@ const Beers = props => {
 
   if (empty) {
     return (
-      <div>
-        <Paper className={classes.root}>
-          <Typography variant="h5" component="h3">
-            {'You haven\'t reviewed any beers yet. Get to drinking!'}
-          </Typography>
-        </Paper>
+      <div className={classes.root} style={{ margin: '20vh' }}>
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          spacing={3}>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <Typography variant="h5" component="h3">
+                {'You haven\'t reviewed any beers yet. Get to drinking!'}
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
       </div>
     )
   }

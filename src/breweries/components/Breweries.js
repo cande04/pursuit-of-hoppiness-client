@@ -46,6 +46,9 @@ const Breweries = props => {
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary
+    },
+    pos: {
+      marginBottom: 12
     }
   }))
 
@@ -53,7 +56,7 @@ const Breweries = props => {
 
   if (empty) {
     return (
-      <div className={classes.root}>
+      <div className={classes.root} style={{ margin: '20vh' }}>
         <Grid
           container
           direction="column"
@@ -62,10 +65,10 @@ const Breweries = props => {
           spacing={3}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <Typography variant="h5" component="h3">
+              <Typography variant="h5" component="h3" className={classes.pos}>
               You haven&quot;t reviewed any breweries yet. Get to drinking!
               </Typography>
-              <Typography variant="h5" component="h5">
+              <Typography variant="h5" component="h5" className={classes.pos}>
               Need inspiration? Click below to find a brewery near you!
               </Typography>
               <Button variant="outlined" color="default" component={Link} to={'/search-breweries'}>

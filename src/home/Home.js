@@ -81,19 +81,20 @@ const beerQuotes = [
   }
 ]
 
-const randomQuote = beerQuotes[Math.floor(Math.random() * beerQuotes.length)]
-
-const Home = () => (
-  <div>
-    <Paper style={styles.paper}>
-      <Typography variant="h5" component="h3">
-        {randomQuote.quote}
-      </Typography>
-      <Typography component="p">
-        {randomQuote.speaker}
-      </Typography>
-    </Paper>
-  </div>
-)
+const Home = () => {
+  const randomQuote = beerQuotes[Math.floor(Math.random() * beerQuotes.length)]
+  return (
+    <div>
+      <Paper style={styles.paper}>
+        <Typography variant="h5" component="h3">
+          {randomQuote.quote}
+        </Typography>
+        <Typography component="p">
+          {randomQuote.speaker}
+        </Typography>
+      </Paper>
+    </div>
+  )
+}
 
 export default Home
