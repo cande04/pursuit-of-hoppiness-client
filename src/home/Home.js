@@ -83,37 +83,17 @@ const beerQuotes = [
 
 const randomQuote = beerQuotes[Math.floor(Math.random() * beerQuotes.length)]
 
-class Home extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      quote: randomQuote
-    }
-  }
-
-  // componentDidMount () {
-  //   this.setState({ shown: true })
-  // }
-
-  componentDidMount () {
-    this.setState({ quote: randomQuote })
-  }
-
-  render () {
-    return (
-      <div>
-        <Paper style={styles.paper}>
-          <Typography variant="h5" component="h3">
-            {randomQuote.quote}
-          </Typography>
-          <Typography component="p">
-            {randomQuote.speaker}
-          </Typography>
-        </Paper>
-      </div>
-    )
-  }
-}
+const Home = () => (
+  <div>
+    <Paper style={styles.paper}>
+      <Typography variant="h5" component="h3">
+        {randomQuote.quote}
+      </Typography>
+      <Typography component="p">
+        {randomQuote.speaker}
+      </Typography>
+    </Paper>
+  </div>
+)
 
 export default Home
