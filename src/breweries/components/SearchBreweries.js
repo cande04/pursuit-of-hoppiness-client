@@ -67,10 +67,10 @@ const SearchBreweries = props => {
   if (noBreweries === true) {
     return (
       <div className={classes.root}>
-        <h3>doesnt exist in database</h3>
         <Paper className={classes.paper}>
-          <h3>try adding it yourself!</h3>
-          <Button variant="outlined" color="default" component={Link} to='/brewery-create'>add brewery</Button>
+          <h3>{'Hmm.. doesn\'t seem we\'ve been here before.'}</h3>
+          <h3>Try adding it yourself!</h3>
+          <Button variant="outlined" color="default" component={Link} to='/brewery-create'>Add Brewery</Button>
         </Paper>
       </div>
     )
@@ -80,8 +80,8 @@ const SearchBreweries = props => {
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
-          <h3>dont see your brewery? try adding it yourself!</h3>
-          <Button variant="outlined" color="default" component={Link} to='/brewery-create'>add brewery</Button>
+          <h3>{'Don\'t see your brewery? Try adding it yourself!'}</h3>
+          <Button variant="outlined" color="default" component={Link} to='/brewery-create'>Add Brewery</Button>
         </Paper>
         <Grid
           container

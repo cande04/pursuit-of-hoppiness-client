@@ -68,10 +68,10 @@ const SearchBeer = props => {
   if (noBeer === true) {
     return (
       <div className={classes.root}>
-        <h3>doesnt exist in database</h3>
         <Paper className={classes.paper}>
-          <h3>try adding it yourself!</h3>
-          <Button variant="outlined" color="default" component={Link} to='/beers-create'>add beer</Button>
+          <h3 style={{ fontFamily: 'Roboto' }}>{'Don\'t think we\'ve tried that one yet...'}</h3>
+          <h3 style={{ fontFamily: 'Roboto' }}>Add it yourself!</h3>
+          <Button variant="outlined" color="default" component={Link} to='/beers-create'>Add Beer</Button>
         </Paper>
       </div>
     )

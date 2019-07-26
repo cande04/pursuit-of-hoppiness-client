@@ -50,7 +50,7 @@ const BeerForm = ({ beer, handleChange, handleRatingChange, handleSubmit, cancel
               name="brewery_location"
               value={beer.brewery_location}
               placeholder="Brewery Location"
-              onChange={this.handleChange}
+              onChange={handleChange}
               variant="outlined"
               style={{ width: '100%', marginBottom: '1rem' }}
             />

@@ -18,7 +18,6 @@ import { red } from '@material-ui/core/colors'
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Rating from '@material-ui/lab/Rating'
 import Box from '@material-ui/core/Box'
-import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 
 const BeerList = props => {
@@ -106,7 +105,6 @@ const BeerList = props => {
         title={beer.name}
         subheader={beer.brewery}
       />
-      <Divider />
       <CardContent>
         <Typography variant="h6" className={classes.pos}>Style:</Typography>
         <Typography paragraph className={classes.pos}>

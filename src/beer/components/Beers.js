@@ -55,7 +55,7 @@ const Beers = props => {
       <div>
         <Paper className={classes.root}>
           <Typography variant="h5" component="h3">
-          You haven&quot;t reviewed any beers yet. Get to drinking!
+            {'You haven\'t reviewed any beers yet. Get to drinking!'}
           </Typography>
         </Paper>
       </div>
