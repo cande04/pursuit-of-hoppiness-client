@@ -24,10 +24,10 @@ Knowing that I wanted to integrate with a third party API for this project, I be
 My original plan for the application was to use the data from BreweryDB to search for information for both breweries and beer. From here, I could create a relationship in my own database between a brewery and their brewed beers.
 
 ## User Stories
-As a user, I would like to search for a brewery or a beer
-As a user, I would like to rate and review a brewery or a beer
-As a user, I would like to access the breweries and beers I’ve previously rated
-As a user, I would like to delete or edit my notes about a brewery or a beer
+- As a user, I would like to search for a brewery or a beer
+- As a user, I would like to rate and review a brewery or a beer
+- As a user, I would like to access the breweries and beers I’ve previously rated
+- As a user, I would like to delete or edit my notes about a brewery or a beer
 
 ## Wireframes
 ![Imgur](https://i.imgur.com/omlgZNQ.jpg)
