@@ -9,7 +9,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -110,26 +109,24 @@ const SearchBeer = props => {
               {beerResults.map((beer, index) =>
                 <div key={beer.id}>
                   <Card className={classes.card}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        alt="beer label"
-                        height="240"
-                        image={beer.image}
-                        title="beer label"
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          {beer.name}
-                        </Typography>
-                        <Typography gutterBottom variant="h5" component="h4">
-                          {beer.breweries[0].name}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                          {beer.description}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="beer label"
+                      height="240"
+                      image={beer.image}
+                      title="beer label"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {beer.name}
+                      </Typography>
+                      <Typography gutterBottom variant="h5" component="h4">
+                        {beer.breweries[0].name}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary" component="p">
+                        {beer.description}
+                      </Typography>
+                    </CardContent>
                     <CardActions>
                       <Button variant="outlined" color="default" component={Link} to={{
                         pathname: '/beers-known-create',

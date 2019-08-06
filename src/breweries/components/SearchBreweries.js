@@ -10,7 +10,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -102,26 +101,24 @@ const SearchBreweries = props => {
               {breweriesResults.map(brewery =>
                 <div key={brewery.id}>
                   <Card className={classes.card}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        alt="brewery label"
-                        height="240"
-                        image={brewery.image_url}
-                        title="brewery label"
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          {brewery.name}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="h5">
-                          {brewery.location.address1} {brewery.location.city}, {brewery.location.state} {brewery.location.zip_code}
-                        </Typography>
-                        <Typography varient="body2" color="textSecondary" component="h5">
-                          {brewery.display_phone}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="brewery label"
+                      height="240"
+                      image={brewery.image_url}
+                      title="brewery label"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {brewery.name}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary" component="h5">
+                        {brewery.location.address1} {brewery.location.city}, {brewery.location.state} {brewery.location.zip_code}
+                      </Typography>
+                      <Typography varient="body2" color="textSecondary" component="h5">
+                        {brewery.display_phone}
+                      </Typography>
+                    </CardContent>
                     <CardActions>
                       <Button variant="outlined" color="default" component={Link} to={{
                         pathname: '/breweries-known-create',
