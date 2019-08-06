@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter, Redirect, Link } from 'react-router-dom'
 import { withSnackbar } from 'notistack'
 import axios from 'axios'
 
@@ -152,6 +152,9 @@ class CreateKnownBrewery extends Component {
                 </Box>
                 <Button variant="outlined" color="default" type="submit">
                   submit
+                </Button>
+                <Button variant="outlined" color="default" component={Link} to={'/search-breweries'}>
+                  cancel
                 </Button>
               </form>
             </Paper>

@@ -21,6 +21,12 @@ const SearchBeer = props => {
   const [beerResults, setBeerResults] = useState([])
   const [noBeer, setNoBeer] = useState(null)
 
+  const clearState = () => {
+    setSearchBeer('')
+    setBeerResults([])
+    setNoBeer(null)
+  }
+
   const handleChange = event => {
     event.persist()
     setSearchBeer(beer => ({ [event.target.name]: event.target.value }))
@@ -72,6 +78,7 @@ const SearchBeer = props => {
           <h3 style={{ fontFamily: 'Roboto' }}>{'Don\'t think we\'ve tried that one yet...'}</h3>
           <h3 style={{ fontFamily: 'Roboto' }}>Add it yourself!</h3>
           <Button variant="outlined" color="default" component={Link} to='/beers-create'>Add Beer</Button>
+          <Button variant="outlined" colot="default" onClick={clearState}>back to search</Button>
         </Paper>
       </div>
     )
@@ -88,8 +95,9 @@ const SearchBeer = props => {
     return (
       <div className={classes.root}>
         <Paper className={classes.paper}>
-          <h3>dont see your beer? try adding it yourself!</h3>
+          <h3>Dont see your beer? Try adding it yourself!</h3>
           <Button variant="outlined" color="default" component={Link} to='/beers-create'>add beer</Button>
+          <Button variant="outlined" colot="default" onClick={clearState}>back to search</Button>
         </Paper>
         <Grid
           container

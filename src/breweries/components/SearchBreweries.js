@@ -22,6 +22,12 @@ const SearchBreweries = props => {
   const [breweriesResults, setBreweriesResults] = useState([])
   const [noBreweries, setNoBreweries] = useState(null)
 
+  const clearState = () => {
+    setSearchBreweries('')
+    setBreweriesResults([])
+    setNoBreweries(null)
+  }
+
   const handleChange = event => {
     event.persist()
     setSearchBreweries(brewery => ({ [event.target.name]: event.target.value }))
@@ -71,6 +77,7 @@ const SearchBreweries = props => {
           <h3>{'Hmm.. doesn\'t seem we\'ve been here before.'}</h3>
           <h3>Try adding it yourself!</h3>
           <Button variant="outlined" color="default" component={Link} to='/brewery-create'>Add Brewery</Button>
+          <Button variant="outlined" colot="default" onClick={clearState}>Back to Search</Button>
         </Paper>
       </div>
     )
@@ -82,6 +89,7 @@ const SearchBreweries = props => {
         <Paper className={classes.paper}>
           <h3>{'Don\'t see your brewery? Try adding it yourself!'}</h3>
           <Button variant="outlined" color="default" component={Link} to='/brewery-create'>Add Brewery</Button>
+          <Button variant="outlined" colot="default" onClick={clearState}>Back to Search</Button>
         </Paper>
         <Grid
           container
